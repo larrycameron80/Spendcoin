@@ -5,6 +5,8 @@ pragma solidity ^0.4.18;
 
 // 'XSD' 'Spend' token contract
 //
+// Developer Genji Sakamoto
+//
 // Symbol      : XSD
 // Name        : Spend
 // Total supply: 10,000,000,000.000000000000000000
