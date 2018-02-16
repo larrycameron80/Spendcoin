@@ -2,7 +2,7 @@
 XSD token source for Spend.
 
 Symbol      : XSD
-Name        : Spend
+Name        : SpendCoin
 Total supply: 10,000,000,000 XSD
 Decimals    : 18
 
