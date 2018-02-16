@@ -8,7 +8,7 @@ pragma solidity ^0.4.18;
 // Developer Genji Sakamoto
 //
 // Symbol      : XSD
-// Name        : Spend
+// Name        : SpendCoin
 // Total supply: 10,000,000,000.000000000000000000
 // Decimals    : 18
 // ----------------------------------------------------------------------------
@@ -127,7 +127,7 @@ contract Owned {
 
 // ----------------------------------------------------------------------------
 
-contract XSDToken is ERC20Interface, Owned {
+contract SpendCoin is ERC20Interface, Owned {
 
     using SafeMath for uint;
 
@@ -153,11 +153,11 @@ contract XSDToken is ERC20Interface, Owned {
 
     // ------------------------------------------------------------------------
 
-    function XSDToken() public {
+    function SpendCoin() public {
 
         symbol = "XSD";
 
-        name = "Spend";
+        name = "SpendCoin";
 
         decimals = 18;
 
