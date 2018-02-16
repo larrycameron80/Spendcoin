@@ -1,4 +1,4 @@
-# Spend-Token-XSD
+# SpendCoin
 XSD token source for Spend.
 
 Symbol      : XSD
