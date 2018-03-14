@@ -3,9 +3,7 @@ pragma solidity ^0.4.18;
 
 // ----------------------------------------------------------------------------
 
-// 'XSD' 'Spend' token contract
-//
-// Developer Genji Sakamoto
+// 'XSD' 'Spend' Coin contract
 //
 // Symbol      : XSD
 // Name        : SpendCoin
