@@ -3,6 +3,9 @@
 ## Overview
 Global [ERC20](https://github.com/ethereum/EIPs/issues/20)-compatible Ethereum token designed for purchasing goods in real time.
 
+## Deploy
+https://etherscan.io/address/0x8b449007fecad398b3c0b8ca27305a4b9ddaa32a
+
 ## Token Contract Information
 
 - Symbol: `XSD`
