@@ -125,8 +125,7 @@ contract Tokenlock is Owned {
     event UnFreezed();
 
     modifier validLock {
-        require(isLocked == 0);
-        require(now < lockStartTime || now > lockEndTime);
+        require(isLocked == 0 || (now < lockStartTime || now > lockEndTime));
         _;
     }
     
