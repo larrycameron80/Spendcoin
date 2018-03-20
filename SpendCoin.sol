@@ -117,9 +117,9 @@ contract Owned {
 
 contract Tokenlock is Owned {
     
-    uint lockStartTime;   //time from when token will be locked
-    uint lockEndTime;     //time from when token will be locked
-    uint8 isLocked;       //flag indicates if token is locked
+    uint lockStartTime = 0;   //time from when token will be locked
+    uint lockEndTime = 0;     //time from when token will be locked
+    uint8 isLocked = 0;       //flag indicates if token is locked
 
     event Freezed(uint starttime, uint endtime);
     event UnFreezed();
@@ -239,7 +239,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function transfer(address to, uint tokens) public returns (bool success) {
+    function transfer(address to, uint tokens) validLock public returns (bool success) {
 
         balances[msg.sender] = balances[msg.sender].sub(tokens);
 
@@ -269,7 +269,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function approve(address spender, uint tokens) public returns (bool success) {
+    function approve(address spender, uint tokens) validLock public returns (bool success) {
 
         allowed[msg.sender][spender] = tokens;
 
@@ -299,7 +299,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function transferFrom(address from, address to, uint tokens) public returns (bool success) {
+    function transferFrom(address from, address to, uint tokens) validLock public returns (bool success) {
 
         balances[from] = balances[from].sub(tokens);
 
