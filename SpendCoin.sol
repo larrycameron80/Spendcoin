@@ -115,6 +115,38 @@ contract Owned {
 
 }
 
+contract Tokenlock is Owned {
+    
+    uint lockStartTime;   //time from when token will be locked
+    uint lockEndTime;     //time from when token will be locked
+    uint8 isLocked;       //flag indicates if token is locked
+
+    event Freezed(uint starttime, uint endtime);
+    event UnFreezed();
+
+    modifier validLock {
+        require(isLocked == 0);
+        require(now < lockStartTime || now > lockEndTime);
+        _;
+    }
+    
+    function freeze(uint _startTime, uint _endTime) public onlyOwner {
+        isLocked = 1;
+        lockStartTime = _startTime;
+        lockEndTime = _endTime;
+        
+        emit Freezed(_startTime, _endTime);
+    }
+
+    function unfreeze() public onlyOwner {
+        isLocked = 0;
+        lockStartTime = 0;
+        lockEndTime = 0;
+        
+        emit UnFreezed();
+    }
+}
+
 
 
 // ----------------------------------------------------------------------------
@@ -125,7 +157,7 @@ contract Owned {
 
 // ----------------------------------------------------------------------------
 
-contract SpendCoin is ERC20Interface, Owned {
+contract SpendCoin is ERC20Interface, Tokenlock {
 
     using SafeMath for uint;
 
@@ -163,7 +195,7 @@ contract SpendCoin is ERC20Interface, Owned {
 
         balances[owner] = _totalSupply;
 
-        Transfer(address(0), owner, _totalSupply);
+        emit Transfer(address(0), owner, _totalSupply);
 
     }
 
@@ -213,7 +245,7 @@ contract SpendCoin is ERC20Interface, Owned {
 
         balances[to] = balances[to].add(tokens);
 
-        Transfer(msg.sender, to, tokens);
+        emit Transfer(msg.sender, to, tokens);
 
         return true;
 
@@ -241,7 +273,7 @@ contract SpendCoin is ERC20Interface, Owned {
 
         allowed[msg.sender][spender] = tokens;
 
-        Approval(msg.sender, spender, tokens);
+        emit Approval(msg.sender, spender, tokens);
 
         return true;
 
@@ -275,7 +307,7 @@ contract SpendCoin is ERC20Interface, Owned {
 
         balances[to] = balances[to].add(tokens);
 
-        Transfer(from, to, tokens);
+        emit Transfer(from, to, tokens);
 
         return true;
 
@@ -314,8 +346,8 @@ contract SpendCoin is ERC20Interface, Owned {
     // Owner can withdraw ether if token received.
     // ------------------------------------------------------------------------
     function withdraw() public onlyOwner returns (bool result) {
-        
-        return owner.send(this.balance);
+        address tokenaddress = this;
+        return owner.send(tokenaddress.balance);
         
     }
     
