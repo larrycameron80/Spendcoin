@@ -198,7 +198,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
         decimals = 18;
 
-        _totalSupply = 10000000000 * 10**uint(decimals);
+        _totalSupply = 2000000000 * 10**uint(decimals);
 
         balances[owner] = _totalSupply;
 
