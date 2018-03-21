@@ -129,12 +129,20 @@ contract Tokenlock is Owned {
         _;
     }
     
-    function freeze(uint _startTime, uint _endTime) public onlyOwner {
+    function freezeTime(uint _startTime, uint _endTime) public onlyOwner {
         isLocked = 1;
         lockStartTime = _startTime;
         lockEndTime = _endTime;
         
-        emit Freezed(_startTime, _endTime);
+        emit Freezed(lockStartTime, lockEndTime);
+    }
+    
+    function freeze() public onlyOwner {
+        isLocked = 1;
+        lockStartTime = 0;
+        lockEndTime = 90000000000;
+        
+        emit Freezed(lockStartTime, lockEndTime);
     }
 
     function unfreeze() public onlyOwner {
