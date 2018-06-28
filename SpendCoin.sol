@@ -3,12 +3,13 @@ pragma solidity ^0.4.18;
 
 // ----------------------------------------------------------------------------
 
-// 'XSD' 'Spend' Coin contract
+// Spendcoin Contract
 //
-// Symbol      : XSD
-// Name        : SpendCoin
+// Symbol      : SPND
+// Name        : Spendcoin
 // Total supply: 2,000,000,000.000000000000000000
 // Decimals    : 18
+// Website     : https://spendcoin.org
 // ----------------------------------------------------------------------------
 
 
@@ -155,7 +156,6 @@ contract Tokenlock is Owned {
 }
 
 
-
 // ----------------------------------------------------------------------------
 
 // ERC20 Token, with the addition of symbol, name and decimals and an
@@ -164,7 +164,7 @@ contract Tokenlock is Owned {
 
 // ----------------------------------------------------------------------------
 
-contract SpendCoin is ERC20Interface, Tokenlock {
+contract Spendcoin is ERC20Interface, Tokenlock {
 
     using SafeMath for uint;
 
@@ -190,11 +190,11 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function SpendCoin() public {
+    function Spendcoin() public {
 
-        symbol = "XSD";
+        symbol = "SPND";
 
-        name = "SpendCoin";
+        name = "Spendcoin";
 
         decimals = 18;
 
@@ -246,7 +246,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function transfer(address to, uint tokens) validLock public returns (bool success) {
+    function transfer(address to, uint tokens) public returns (bool success) {
 
         balances[msg.sender] = balances[msg.sender].sub(tokens);
 
@@ -276,7 +276,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function approve(address spender, uint tokens) validLock public returns (bool success) {
+    function approve(address spender, uint tokens) public returns (bool success) {
 
         allowed[msg.sender][spender] = tokens;
 
@@ -306,7 +306,7 @@ contract SpendCoin is ERC20Interface, Tokenlock {
 
     // ------------------------------------------------------------------------
 
-    function transferFrom(address from, address to, uint tokens) validLock public returns (bool success) {
+    function transferFrom(address from, address to, uint tokens) public returns (bool success) {
 
         balances[from] = balances[from].sub(tokens);
 
@@ -355,7 +355,6 @@ contract SpendCoin is ERC20Interface, Tokenlock {
     function withdraw() public onlyOwner returns (bool result) {
         address tokenaddress = this;
         return owner.send(tokenaddress.balance);
-        
     }
     
     // ------------------------------------------------------------------------
