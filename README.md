@@ -30,7 +30,7 @@ In Ethereum Wallet / Mist, select the CONTRACTS tab and click WATCH TOKEN to ope
 
 In Ethereum Wallet / Mist, select the CONTRACTS tab and click WATCH CONTRACT to open the Watch contract window. Then:
 
-- Under CONTRACT NAME, enter STORJ
+- Under CONTRACT NAME, enter SPND
 
 - Under CONTRACT ADDRESS, enter `0xDDD460bBD9F79847ea08681563e8A9696867210C`
 
